@@ -126,13 +126,14 @@ def plot_by_day (times_dict):
 
     ind = np.arange(time_elapsed+1)
     width = 0.35
+    p1 = plt.subplot(2, 2, 2)
+    p2 = plt.subplot(2, 2, 2)
     p1 = plt.bar(ind, person1_data, color='royalblue')
     p2 = plt.bar(ind, person2_data, bottom=person1_data, color='seagreen')
     plt.xticks(ind+width/2)
     plt.xticks(ind, dates_list, rotation=90)
     plt.legend((p1[0], p2[0]), (name1, name2))
     plt.title('Message distribution by day')
-    plt.show()
 
 def plot_by_month (times_dict):
     dates1, dates2 = by_month(times_dict, name1, name2)
@@ -161,13 +162,14 @@ def plot_by_month (times_dict):
 
     ind = np.arange(time_elapsed)
     width = 0.35
+    p1 = plt.subplot(2, 2, 4)
+    p2 = plt.subplot(2, 2, 4)
     p1 = plt.bar(ind, person1_data, color='royalblue')
     p2 = plt.bar(ind, person2_data, bottom=person1_data, color='seagreen')
     plt.xticks(ind+width/2)
     plt.xticks(ind, dates_list, rotation=90)
     plt.legend((p1[0], p2[0]), (name1, name2))
     plt.title('Message distribution by day')
-    plt.show()
 
 def plot_by_week (times_dict):
     first_week = datetime.datetime.fromtimestamp(min(min(times_dict[name1]), min(times_dict[name2])))
@@ -195,22 +197,22 @@ def plot_by_week (times_dict):
 
     ind = np.arange(len(dates_list))
     width = 0.35
+    p1 = plt.subplot(2, 2, 3)
+    p2 = plt.subplot(2, 2, 3)
     p1 = plt.bar(ind, person1_data, color='royalblue')
     p2 = plt.bar(ind, person2_data, bottom=person1_data, color='seagreen')
     plt.xticks(ind)
     plt.xticks(ind, dates_list, rotation=90)
     plt.legend((p1[0], p2[0]), (name1, name2))
     plt.title('Message distribution by week')
-    plt.show()
 
 def plot_piechart(name1_count, name2_count, total_count):
-    piechart = plt.subplot()
+    piechart = plt.subplot(2, 2, 1)
     labels = name1 + ": " + str(name1_count), name2 + ": " + str(name2_count)
     sizes = [float(name1_count)/total_count, float(name2_count)/total_count]
     piechart.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90)
     piechart.axis('equal')
     plt.title('Message distribution')
-    plt.show()
 
 def main():
     name1_msgs, name2_msgs, times_dict = build_msg_dict(messages)
@@ -221,5 +223,8 @@ def main():
     plot_by_day(times_dict)
     plot_by_week(times_dict)
     plot_by_month(times_dict)
+
+    plt.show()
+
 
 main()
