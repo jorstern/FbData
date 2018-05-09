@@ -9,7 +9,7 @@ import similarity
 
 
 name1 = "Jordan Stern"
-name2 = "Jintana Cunningham"
+name2 = "Person 2"
 
 with open('message.json', 'r') as fr:
     messages_dict = OrderedDict(json.load(fr))
