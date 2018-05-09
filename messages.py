@@ -9,7 +9,7 @@ import similarity
 
 
 name1 = "Jordan Stern"
-name2 = "Person 2"
+name2 = "Jintana Cunningham"
 
 with open('message.json', 'r') as fr:
     messages_dict = OrderedDict(json.load(fr))
@@ -252,10 +252,8 @@ def plot_avg_msg_length(name1_count, name2_count, msg_dict):
     total_count = name1_count + name2_count
 
     messages = plt.subplot(2, 2, 1)
-    labels =str(name1_count), str(name2_count)
-    messages.pie([float(name1_count)/total_count, float(name2_count)/total_count], labels=labels)
-    messages.axis('equal')
-    messages.set_title("Message Count")
+    plt.title("Average Message Length")
+    messages = plt.bar([0,1], [name1_dict["content"], name2_dict["content"]], tick_label=[name1,name2], color='blue')
 
     photos = plt.subplot(2, 2, 2)
     amt1, amt2 = name1_dict["photos"], name2_dict["photos"]
